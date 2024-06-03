@@ -61,19 +61,19 @@ public class DrawingManager {
 					break;
 				case 7:
 
-					aniloxRollObj.setDia1(strListB.get(i)[k]);
+					aniloxRollObj.setDiameterLow(strListB.get(i)[k]);
 
 					break;
 				case 8:
 
-					aniloxRollObj.setDia2(strListB.get(i)[k]);
+					aniloxRollObj.setDiameterHigh(strListB.get(i)[k]);
 
 					break;
 				case 9:
-					aniloxRollObj.setFace1(strListB.get(i)[k]);
+					aniloxRollObj.setFaceLengthLow(strListB.get(i)[k]);
 					break;
 				case 10:
-					aniloxRollObj.setFace2(strListB.get(i)[k]);
+					aniloxRollObj.setFaceLengthHigh(strListB.get(i)[k]);
 					break;
 				case 11:
 					System.out.println("i = " + i);
@@ -100,7 +100,7 @@ public class DrawingManager {
 					break;
 				case 16:
 
-					aniloxRollObj.setCust(strListB.get(i)[k]);
+					aniloxRollObj.setCustomer(strListB.get(i)[k]);
 					break;
 				case 17:
 
@@ -108,11 +108,11 @@ public class DrawingManager {
 					break;
 				case 18:
 
-					aniloxRollObj.setCustPin(strListB.get(i)[k]);
+					aniloxRollObj.setCustomer(strListB.get(i)[k]);
 					break;
 				case 19:
 
-					aniloxRollObj.setCustRev(strListB.get(i)[k]);
+					aniloxRollObj.setCustomer(strListB.get(i)[k]);
 					break;
 				case 20:
 

@@ -52,12 +52,11 @@ public class CreatePrintSearchDatabase {
 			Class.forName(MySQLDatabaseFinal.JDBC_DRIVER);
 
 			// creates connection to "printDrawings" Database
-			Connection connn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + MySQLDatabaseFinal.DB_NAME,
-					"root", "five2one");
+			Connection connn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + MySQLDatabaseFinal.DB_NAME, "root",
+					"five2one");
 			System.out.println("Connected to database successfully!!!\n");
 
-			System.out.println(
-					"Connected to \"jdbc:mysql://localhost:3306/" + MySQLDatabaseFinal.DB_NAME + " successfully!!!");
+			System.out.println("Connected to \"jdbc:mysql://localhost:3306/" + MySQLDatabaseFinal.DB_NAME + " successfully!!!");
 
 			System.out.println();
 
@@ -202,16 +201,16 @@ public class CreatePrintSearchDatabase {
 			// /* Create MySQLDatabaseFinal.DB_TABLE_NAME Table */
 
 			String createTableSQL = "CREATE TABLE " + MySQLDatabaseFinal.DB_TABLE_NAME + " (" +
-					"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " + "bearing_max VARCHAR(255), " +
-					"bearing_min VARCHAR(255), " + "cust VARCHAR(255), " + "cust_pin VARCHAR(255), " +
-					"cust_rev VARCHAR(255), " + "date VARCHAR(255), " + "date_created VARCHAR(255), " +
-					"dia1 FLOAT NOT NULL, " + "dia2 FLOAT NOT NULL, " + "dmg_drawing_path VARCHAR(255), " +
-					"drawing_name VARCHAR(255), " + "face1 FLOAT NOT NULL, " + "face2 FLOAT NOT NULL, " +
-					"new_base_price VARCHAR(255), " + "oem VARCHAR(255), " + "originating_customer VARCHAR(255), " +
-					"part_no VARCHAR(255), " + "pdf_path VARCHAR(255), " + "prev_part_no VARCHAR(255), " +
-					"product_code VARCHAR(255), " + "rev_number VARCHAR(255), " + "scanned_path VARCHAR(255), " +
-					"steps VARCHAR(255), " + "subcontractor VARCHAR(255), " + "type VARCHAR(255), " +
-					"xlsm_path VARCHAR(255), " + "xlsx_path VARCHAR(255)" + ")";
+					"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " + "bearing_max VARCHAR(255), " + "bearing_min VARCHAR(255), " +
+					"customer VARCHAR(255), " + "customer_pin VARCHAR(255), " + "customer_revision VARCHAR(255), " +
+					"date VARCHAR(255), " + "date_created VARCHAR(255), " + "diameter_low FLOAT NOT NULL, " +
+					"diameter_high FLOAT NOT NULL, " + "dmg_drawing_path VARCHAR(255), " + "drawing_name VARCHAR(255), " +
+					"face_length_low FLOAT NOT NULL, " + "face_length_high FLOAT NOT NULL, " + "new_base_price VARCHAR(255), " +
+					"oem VARCHAR(255), " + "originating_customer VARCHAR(255), " + "part_no VARCHAR(255), " +
+					"pdf_path VARCHAR(255), " + "prev_part_no VARCHAR(255), " + "product_code VARCHAR(255), " +
+					"rev_number VARCHAR(255), " + "scanned_path VARCHAR(255), " + "steps VARCHAR(255), " +
+					"subcontractor VARCHAR(255), " + "type VARCHAR(255), " + "xlsm_path VARCHAR(255), " +
+					"xlsx_path VARCHAR(255)" + ")";
 
 			System.out.println(createTableSQL);
 
@@ -236,27 +235,27 @@ public class CreatePrintSearchDatabase {
 				sb = new StringBuilder();
 
 				sb.append("INSERT INTO " + MySQLDatabaseFinal.DB_TABLE_NAME + "(bearing_max , " + "bearing_min , " +
-						"cust , " + "cust_pin , " + "cust_rev , " + "date , " + "date_created , " + "dia1, " +
-						"dia2, " + "dmg_drawing_path , " + "drawing_name , " + "face1, " + "face2, " +
-						"new_base_price , " + "oem , " + "originating_customer , " + "part_no , " + "pdf_path , " +
-						"prev_part_no , " + "product_code , " + "rev_number , " + "scanned_path , " + "steps , " +
+						"customer , " + "customer_pin , " + "customer_revision , " + "date , " + "date_created , " +
+						"diameter_low, " + "diameter_high, " + "dmg_drawing_path , " + "drawing_name , " + "face_length_low, " +
+						"face_length_high, " + "new_base_price , " + "oem , " + "originating_customer , " + "part_no , " +
+						"pdf_path , " + "prev_part_no , " + "product_code , " + "rev_number , " + "scanned_path , " + "steps , " +
 						"subcontractor , " + "type , " + "xlsm_path , " + "xlsx_path " + ")");
 
 				sb.append("VALUES(");
 
 				sb.append("'" + printDrawingsListDto.get(i).getBearingMax() + "', ");
 				sb.append("'" + printDrawingsListDto.get(i).getBearingMin() + "', ");
-				sb.append("'" + printDrawingsListDto.get(i).getCust() + "', ");
-				sb.append("'" + printDrawingsListDto.get(i).getCustPin() + "', ");
-				sb.append("'" + printDrawingsListDto.get(i).getCustRev() + "', ");
+				sb.append("'" + printDrawingsListDto.get(i).getCustomer() + "', ");
+				sb.append("'" + printDrawingsListDto.get(i).getCustomerPin() + "', ");
+				sb.append("'" + printDrawingsListDto.get(i).getCustomerRevision() + "', ");
 				sb.append("'" + printDrawingsListDto.get(i).getDate() + "', ");
 				sb.append("'" + printDrawingsListDto.get(i).getDateCreated() + "', ");
-				sb.append("'" + printDrawingsListDto.get(i).getDia1() + "', ");
-				sb.append("'" + printDrawingsListDto.get(i).getDia2() + "', ");
+				sb.append("'" + printDrawingsListDto.get(i).getDiameterLow() + "', ");
+				sb.append("'" + printDrawingsListDto.get(i).getDiameterHigh() + "', ");
 				sb.append("'" + printDrawingsListDto.get(i).getDmgDrawingPath() + "', ");
 				sb.append("'" + printDrawingsListDto.get(i).getDrawingName() + "', ");
-				sb.append("'" + printDrawingsListDto.get(i).getFace1() + "', ");
-				sb.append("'" + printDrawingsListDto.get(i).getFace2() + "', ");
+				sb.append("'" + printDrawingsListDto.get(i).getFaceLengthLow() + "', ");
+				sb.append("'" + printDrawingsListDto.get(i).getFaceLengthHigh() + "', ");
 				sb.append("'" + printDrawingsListDto.get(i).getNewBasePrice() + "', ");
 				sb.append("'" + printDrawingsListDto.get(i).getOem() + "', ");
 				sb.append("'" + printDrawingsListDto.get(i).getOriginatingCustomer() + "', ");
@@ -319,16 +318,16 @@ public class CreatePrintSearchDatabase {
 
 			/* Create "printdrawings" table */
 			String createTableSQL = "CREATE TABLE " + MySQLDatabaseFinal.DB_TABLE_NAME + "(" +
-					"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " + "bearing_max VARCHAR(255), " +
-					"bearing_min VARCHAR(255), " + "cust VARCHAR(255), " + "cust_pin VARCHAR(255), " +
-					"cust_rev VARCHAR(255), " + "date VARCHAR(255), " + "date_created VARCHAR(255), " +
-					"dia1 FLOAT NOT NULL, " + "dia2 FLOAT NOT NULL, " + "dmg_drawing_path VARCHAR(255), " +
-					"drawing_name VARCHAR(255), " + "face1 FLOAT NOT NULL, " + "face2 FLOAT NOT NULL, " +
-					"new_base_price VARCHAR(255), " + "oem VARCHAR(255), " + "originating_customer VARCHAR(255), " +
-					"part_no VARCHAR(255), " + "pdf_path VARCHAR(255), " + "prev_part_no VARCHAR(255), " +
-					"product_code VARCHAR(255), " + "rev_number VARCHAR(255), " + "scanned_path VARCHAR(255), " +
-					"steps VARCHAR(255), " + "subcontractor VARCHAR(255), " + "type VARCHAR(255), " +
-					"xlsm_path VARCHAR(255), " + "xlsx_path VARCHAR(255)" + ")";
+					"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " + "bearing_max VARCHAR(255), " + "bearing_min VARCHAR(255), " +
+					"customer VARCHAR(255), " + "customer_pin VARCHAR(255), " + "customer_revision VARCHAR(255), " +
+					"date VARCHAR(255), " + "date_created VARCHAR(255), " + "diameter_low FLOAT NOT NULL, " +
+					"diameter_high FLOAT NOT NULL, " + "dmg_drawing_path VARCHAR(255), " + "drawing_name VARCHAR(255), " +
+					"face_length_low FLOAT NOT NULL, " + "face_length_high FLOAT NOT NULL, " + "new_base_price VARCHAR(255), " +
+					"oem VARCHAR(255), " + "originating_customer VARCHAR(255), " + "part_no VARCHAR(255), " +
+					"pdf_path VARCHAR(255), " + "prev_part_no VARCHAR(255), " + "product_code VARCHAR(255), " +
+					"rev_number VARCHAR(255), " + "scanned_path VARCHAR(255), " + "steps VARCHAR(255), " +
+					"subcontractor VARCHAR(255), " + "type VARCHAR(255), " + "xlsm_path VARCHAR(255), " +
+					"xlsx_path VARCHAR(255)" + ")";
 
 			System.out.println("Created all tables successfully!!!");
 
@@ -345,23 +344,23 @@ public class CreatePrintSearchDatabase {
 				StringBuilder sb = new StringBuilder();
 
 				sb.append("INSERT INTO " + MySQLDatabaseFinal.DB_TABLE_NAME +
-						"(bearing_max , bearing_min , cust , cust_pin , cust_rev , date , date_created ,dia1, dia2, dmg_drawing_path , drawing_name , face1 , face2, new_base_price , oem ,originating_customer , part_no , pdf_path , prev_part_no , product_code , rev_number , scanned_path ,steps , subcontractor , type , xlsm_path , xlsx_path )");
+						"(bearing_max , bearing_min , customer , customer_pin , customer_revision , date , date_created ,diameterLow, diameterHigh, dmg_drawing_path , drawing_name , faceLengthLow , faceLengthHigh, new_base_price , oem ,originating_customer , part_no , pdf_path , prev_part_no , product_code , rev_number , scanned_path ,steps , subcontractor , type , xlsm_path , xlsx_path )");
 
 				sb.append("VALUES ");
 
 				sb.append("('" + aniloxDrawingList.get(i).getBearingMax() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getBearingMin() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getCust() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getCustPin() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getCustRev() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getCustomer() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getCustomerPin() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getCustomerRevision() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getDate() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getDateCreated() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getDia1() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getDia2() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getDiameterLow() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getDiameterHigh() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getDmgDrawingPath() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getDrawingName() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getFace1() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getFace2() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getFaceLengthLow() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getFaceLengthHigh() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getNewBasePrice() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getOem() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getOriginatingCustomer() + "', ");

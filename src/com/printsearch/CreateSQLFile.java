@@ -1,6 +1,6 @@
 package com.printsearch;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ public class CreateSQLFile {
 	 */
 	public static List<String> createSQLFileForPrintDrawings(List<PrintDrawingDto> aniloxDrawingList) {
 
-		List<String> obj = new ArrayList<String>();
+		List<String> obj = new LinkedList<String>();
 
 		String noteToConsole = "Attempting to build the PrintDrawing table in the printsearch Database...\n";
 		System.out.println(noteToConsole);
@@ -33,11 +33,11 @@ public class CreateSQLFile {
 
 			/* Create Table */
 			String createTableSQL = "CREATE TABLE printdrawings (" + "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-					"bearing_max VARCHAR(255), " + "bearing_min VARCHAR(255), " + "cust VARCHAR(255), " +
-					"cust_pin VARCHAR(255), " + "cust_rev VARCHAR(255), " + "date VARCHAR(255), " +
-					"date_created VARCHAR(255), " + "dia1 FLOAT NOT NULL, " + "dia2 FLOAT NOT NULL, " +
-					"dmg_drawing_path VARCHAR(255), " + "drawing_name VARCHAR(255), " + "face1 FLOAT NOT NULL, " +
-					"face2 FLOAT NOT NULL, " + "new_base_price VARCHAR(255), " + "oem VARCHAR(255), " +
+					"bearing_max VARCHAR(255), " + "bearing_min VARCHAR(255), " + "customer VARCHAR(255), " +
+					"customer_pin VARCHAR(255), " + "customer_revision VARCHAR(255), " + "date VARCHAR(255), " +
+					"date_created VARCHAR(255), " + "diameter_low FLOAT NOT NULL, " + "diameter_high FLOAT NOT NULL, " +
+					"dmg_drawing_path VARCHAR(255), " + "drawing_name VARCHAR(255), " + "face_length_low FLOAT NOT NULL, " +
+					"face_length_high FLOAT NOT NULL, " + "new_base_price VARCHAR(255), " + "oem VARCHAR(255), " +
 					"originating_customer VARCHAR(255), " + "part_no VARCHAR(255), " + "pdf_path VARCHAR(255), " +
 					"prev_part_no VARCHAR(255), " + "product_code VARCHAR(255), " + "rev_number VARCHAR(255), " +
 					"scanned_path VARCHAR(255), " + "steps VARCHAR(255), " + "subcontractor VARCHAR(255), " +
@@ -56,22 +56,22 @@ public class CreateSQLFile {
 				StringBuilder sb = new StringBuilder();
 
 				sb.append("INSERT INTO " + MySQLDatabaseFinal.DB_TABLE_NAME +
-						"(bearing_max, bearing_min, cust, cust_pin, cust_rev, date, date_created, dia1, dia2, dmg_drawing_path, drawing_name, face1, face2, new_base_price, oem, originating_customer, part_no, pdf_path, prev_part_no, product_code, rev_number, scanned_path, steps, subcontractor, type, xlsm_path, xlsx_path) ");
+						"(bearing_max, bearing_min, customer, customer_pin, customer_revision, date, date_created, diameter_low, diameter_high, dmg_drawing_path, drawing_name, face_length_low, face_length_high, new_base_price, oem, originating_customer, part_no, pdf_path, prev_part_no, product_code, rev_number, scanned_path, steps, subcontractor, type, xlsm_path, xlsx_path) ");
 
 				sb.append("VALUES(");
 				sb.append("'" + aniloxDrawingList.get(i).getBearingMax() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getBearingMin() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getCust() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getCustPin() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getCustRev() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getCustomer() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getCustomerPin() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getCustomerRevision() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getDate() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getDateCreated() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getDia1() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getDia2() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getDiameterLow() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getDiameterHigh() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getDmgDrawingPath() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getDrawingName() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getFace1() + "', ");
-				sb.append("'" + aniloxDrawingList.get(i).getFace2() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getFaceLengthLow() + "', ");
+				sb.append("'" + aniloxDrawingList.get(i).getFaceLengthHigh() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getNewBasePrice() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getOem() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getOriginatingCustomer() + "', ");
@@ -86,11 +86,12 @@ public class CreateSQLFile {
 				sb.append("'" + aniloxDrawingList.get(i).getType() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getXlsmPath() + "', ");
 				sb.append("'" + aniloxDrawingList.get(i).getXlsxPath() + "');");
-				System.out.println(sb.toString());
 
 				obj.add(sb.toString());
 
 			}
+
+			obj.add(0, "use printdrawingsdatabase;");
 
 			System.out.println(obj.get(0));
 

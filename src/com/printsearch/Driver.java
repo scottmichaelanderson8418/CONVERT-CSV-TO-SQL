@@ -27,8 +27,9 @@ public class Driver {
 	 * @throws NumberFormatException if there is a parsing error with numeric data
 	 * @throws IOException           if there is an error reading or writing files
 	 */
-	public static void main(String[] args) throws FileNotFoundException, NumberFormatException, IOException {
-
+	public static void main(String[] args)
+			throws FileNotFoundException, NumberFormatException, IOException {
+		//
 		// Lists to store data
 		List<PrintDrawing> printDrawingsList = new ArrayList<>();
 		List<PrintDrawingDto> printDrawingsListDto = new ArrayList<>();
@@ -45,6 +46,7 @@ public class Driver {
 
 		printDrawingsList = DataTools.cleanUpAll(printDrawingsList);
 		printDrawingsList = DataTools.cleanUpAllNumberCol(printDrawingsList);
+		printDrawingsList = DataTools.cleanUpCustomerColumn(printDrawingsList);
 
 		// DataTools.printAll(printDrawingsList);
 
@@ -55,11 +57,7 @@ public class Driver {
 		// Convert PrintDrawing to PrintDrawingDto objects
 		printDrawingsListDto = DataTools.convertObj(printDrawingsList);
 
-		// Print sample values from printDrawingsListDto
-		System.out.println(printDrawingsListDto.get(5).getDia1());
-		System.out.println(printDrawingsListDto.get(5).getDia2());
-		System.out.println(printDrawingsListDto.get(5).getFace1());
-		System.out.println(printDrawingsListDto.get(5).getFace2());
+		printDrawingsListDto = DataTools.convertObjNone(printDrawingsListDto);
 
 		// Generate SQL statements
 		List<String> masterSQLScript = new ArrayList<>();
@@ -97,8 +95,9 @@ public class Driver {
 
 		// Loop through the list and print each row with formatted data
 		for (int i = 0; i < 100; i++) {
-			System.out.print(i + "\t\t" + strListB.get(i)[columnNumber[0]] + "\t\t" + strListB.get(i)[columnNumber[1]] +
-					"\t\t" + strListB.get(i)[columnNumber[2]] + "\t\t" + strListB.get(i)[columnNumber[3]] + "   ");
+			System.out.print(i + "\t\t" + strListB.get(i)[columnNumber[0]] + "\t\t" +
+					strListB.get(i)[columnNumber[1]] + "\t\t" + strListB.get(i)[columnNumber[2]] +
+					"\t\t" + strListB.get(i)[columnNumber[3]] + "   ");
 		}
 		System.out.println(); // Print a newline after the loop
 	}

@@ -73,6 +73,51 @@ public class DataTools {
 		return newList;
 	}
 
+	public static List<PrintDrawing> cleanUpCustomerColumn(List<PrintDrawing> obj) {
+
+		for (int i = 1; i < obj.size(); i++) {
+
+			PrintDrawing drawing = obj.get(i);
+
+			drawing.setXlsmPath(drawing.getXlsmPath());
+			drawing.setXlsxPath(drawing.getXlsxPath());
+			drawing.setPdfPath(drawing.getPdfPath());
+			drawing.setScannedPath(drawing.getScannedPath());
+			drawing.setDmgDrawingPath(drawing.getDmgDrawingPath());
+			drawing.setDrawingName(drawing.getDrawingName());
+
+			drawing.setDiameterLow(cleanUpQuotes(drawing.getDiameterLow()));
+			drawing.setDiameterHigh(cleanUpQuotes(drawing.getDiameterHigh()));
+			drawing.setFaceLengthLow(cleanUpQuotes(drawing.getFaceLengthLow()));
+			drawing.setFaceLengthHigh(cleanUpQuotes(drawing.getFaceLengthHigh()));
+
+			if (drawing.getCustomer().equals("NONE") || drawing.getCustomer().length() < 5) {
+				drawing.setCustomer(drawing.getOem());
+			} else {
+
+				drawing.setCustomer(drawing.getCustomer());
+			}
+
+			drawing.setOem(drawing.getOem());
+			drawing.setBearingMin(drawing.getBearingMin());
+			drawing.setBearingMax(drawing.getBearingMax());
+			drawing.setCustomerPin(drawing.getCustomerPin());
+			drawing.setCustomerRevision(drawing.getCustomerRevision());
+			drawing.setDate(drawing.getDate());
+			drawing.setDateCreated(drawing.getDateCreated());
+			drawing.setNewBasePrice(drawing.getNewBasePrice());
+			drawing.setOriginatingCustomer(drawing.getOriginatingCustomer());
+			drawing.setPartNo(drawing.getPartNo());
+			drawing.setPrevPartNo(drawing.getPrevPartNo());
+			drawing.setProductCode(drawing.getProductCode());
+			drawing.setRevNumber(drawing.getRevNumber());
+			drawing.setSteps(drawing.getSteps());
+			drawing.setSubcontractor(drawing.getSubcontractor());
+			drawing.setType(drawing.getType());
+		}
+		return obj;
+	}
+
 	/**
 	 * Cleans up all number columns in a list of PrintDrawing objects.
 	 *
@@ -91,17 +136,17 @@ public class DataTools {
 			drawing.setDmgDrawingPath(drawing.getDmgDrawingPath());
 			drawing.setDrawingName(drawing.getDrawingName());
 
-			drawing.setDia1(cleanUpDecimalColumns(cleanUp(removeHashes(drawing.getDia1()))));
-			drawing.setDia2(cleanUp(removeHashes(drawing.getDia2())));
-			drawing.setFace1(cleanUp(removeHashes(drawing.getFace1())));
-			drawing.setFace2(cleanUp(removeHashes(drawing.getFace2())));
+			drawing.setDiameterLow(cleanUpQuotes(drawing.getDiameterLow()));
+			drawing.setDiameterHigh(cleanUpQuotes(drawing.getDiameterHigh()));
+			drawing.setFaceLengthLow(cleanUpQuotes(drawing.getFaceLengthLow()));
+			drawing.setFaceLengthHigh(cleanUpQuotes(drawing.getFaceLengthHigh()));
 
-			drawing.setCust(drawing.getCust());
+			drawing.setCustomer(drawing.getCustomer());
 			drawing.setOem(drawing.getOem());
 			drawing.setBearingMin(drawing.getBearingMin());
 			drawing.setBearingMax(drawing.getBearingMax());
-			drawing.setCustPin(drawing.getCustPin());
-			drawing.setCustRev(drawing.getCustRev());
+			drawing.setCustomerPin(drawing.getCustomerPin());
+			drawing.setCustomerRevision(drawing.getCustomerRevision());
 			drawing.setDate(drawing.getDate());
 			drawing.setDateCreated(drawing.getDateCreated());
 			drawing.setNewBasePrice(drawing.getNewBasePrice());
@@ -127,35 +172,46 @@ public class DataTools {
 		for (int i = 1; i < 11; i++) {
 			PrintDrawing drawing = obj.get(i);
 
-			drawing.setXlsmPath(cleanUp(drawing.getXlsmPath()));
-			drawing.setXlsxPath(cleanUp(drawing.getXlsxPath()));
-			drawing.setPdfPath(cleanUp(drawing.getPdfPath()));
-			drawing.setScannedPath(cleanUp(drawing.getScannedPath()));
-			drawing.setDmgDrawingPath(cleanUp(drawing.getDmgDrawingPath()));
-			drawing.setDrawingName(cleanUp(drawing.getDrawingName()));
-			drawing.setDia1(cleanUp(drawing.getDia1()));
-			drawing.setDia2(cleanUp(drawing.getDia2()));
-			drawing.setFace1(cleanUp(drawing.getFace1()));
-			drawing.setFace2(cleanUp(drawing.getFace2()));
-			drawing.setCust(cleanUp(drawing.getCust()));
-			drawing.setOem(cleanUp(drawing.getOem()));
-			drawing.setBearingMin(cleanUp(drawing.getBearingMin()));
-			drawing.setBearingMax(cleanUp(drawing.getBearingMax()));
-			drawing.setCustPin(cleanUp(drawing.getCustPin()));
-			drawing.setCustRev(cleanUp(drawing.getCustRev()));
-			drawing.setDate(cleanUp(drawing.getDate()));
-			drawing.setDateCreated(cleanUp(drawing.getDateCreated()));
-			drawing.setNewBasePrice(cleanUp(drawing.getNewBasePrice()));
-			drawing.setOriginatingCustomer(cleanUp(drawing.getOriginatingCustomer()));
-			drawing.setPartNo(cleanUp(drawing.getPartNo()));
-			drawing.setPrevPartNo(cleanUp(drawing.getPrevPartNo()));
-			drawing.setProductCode(cleanUp(drawing.getProductCode()));
-			drawing.setRevNumber(cleanUp(drawing.getRevNumber()));
-			drawing.setSteps(cleanUp(drawing.getSteps()));
-			drawing.setSubcontractor(cleanUp(drawing.getSubcontractor()));
-			drawing.setType(cleanUp(drawing.getType()));
+			drawing.setXlsmPath(cleanUpQuotes(drawing.getXlsmPath()));
+			drawing.setXlsxPath(cleanUpQuotes(drawing.getXlsxPath()));
+			drawing.setPdfPath(cleanUpQuotes(drawing.getPdfPath()));
+			drawing.setScannedPath(cleanUpQuotes(drawing.getScannedPath()));
+			drawing.setDmgDrawingPath(cleanUpQuotes(drawing.getDmgDrawingPath()));
+			drawing.setDrawingName(cleanUpQuotes(drawing.getDrawingName()));
+			drawing.setDiameterLow(cleanUpQuotes(drawing.getDiameterLow()));
+			drawing.setDiameterHigh(cleanUpQuotes(drawing.getDiameterHigh()));
+			drawing.setFaceLengthLow(cleanUpQuotes(drawing.getFaceLengthLow()));
+			drawing.setFaceLengthHigh(cleanUpQuotes(drawing.getFaceLengthHigh()));
+			drawing.setCustomer(cleanUpQuotes(drawing.getCustomer()));
+			drawing.setOem(cleanUpQuotes(drawing.getOem()));
+			drawing.setBearingMin(cleanUpQuotes(drawing.getBearingMin()));
+			drawing.setBearingMax(cleanUpQuotes(drawing.getBearingMax()));
+			drawing.setCustomerPin(cleanUpQuotes(drawing.getCustomerPin()));
+			drawing.setCustomerRevision(cleanUpQuotes(drawing.getCustomerRevision()));
+			drawing.setDate(cleanUpQuotes(drawing.getDate()));
+			drawing.setDateCreated(cleanUpQuotes(drawing.getDateCreated()));
+			drawing.setNewBasePrice(cleanUpQuotes(drawing.getNewBasePrice()));
+			drawing.setOriginatingCustomer(cleanUpQuotes(drawing.getOriginatingCustomer()));
+			drawing.setPartNo(cleanUpQuotes(drawing.getPartNo()));
+			drawing.setPrevPartNo(cleanUpQuotes(drawing.getPrevPartNo()));
+			drawing.setProductCode(cleanUpQuotes(drawing.getProductCode()));
+			drawing.setRevNumber(cleanUpQuotes(drawing.getRevNumber()));
+			drawing.setSteps(cleanUpQuotes(drawing.getSteps()));
+			drawing.setSubcontractor(cleanUpQuotes(drawing.getSubcontractor()));
+			drawing.setType(cleanUpQuotes(drawing.getType()));
 		}
 		return obj;
+	}
+
+	public static String countNumberChar(String temp) {
+
+		if (temp.length() >= 5) {
+			return temp;
+		} else {
+			temp = temp + "00000000";
+
+			return temp;
+		}
 	}
 
 	/**
@@ -177,18 +233,20 @@ public class DataTools {
 			objDto.setScannedPath(obj.get(i).getScannedPath());
 			objDto.setDmgDrawingPath(obj.get(i).getDmgDrawingPath());
 			objDto.setDrawingName(obj.get(i).getDrawingName());
-
-			System.out.println("obj.get(i).getDia1() = " + obj.get(i).getDia1());
-			objDto.setDia1(Float.parseFloat(obj.get(i).getDia1()));
-			objDto.setDia2(Float.parseFloat(obj.get(i).getDia2()));
-			objDto.setFace1(Float.parseFloat(obj.get(i).getFace1()));
-			objDto.setFace2(Float.parseFloat(obj.get(i).getFace2()));
-			objDto.setCust(obj.get(i).getCust());
+			objDto.setDiameterLow(Float.parseFloat(
+					countNumberChar((obj.get(i).getDiameterLow().trim())).substring(0, 4)));
+			objDto.setDiameterHigh(Float.parseFloat(
+					countNumberChar(obj.get(i).getDiameterHigh().trim()).substring(0, 4)));
+			objDto.setFaceLengthLow(Float.parseFloat(
+					countNumberChar(obj.get(i).getFaceLengthLow().trim()).substring(0, 4)));
+			objDto.setFaceLengthHigh(Float.parseFloat(
+					countNumberChar(obj.get(i).getFaceLengthHigh().trim()).substring(0, 4)));
+			objDto.setCustomer(obj.get(i).getCustomer());
 			objDto.setOem(obj.get(i).getOem());
 			objDto.setBearingMin(obj.get(i).getBearingMin());
 			objDto.setBearingMax(obj.get(i).getBearingMax());
-			objDto.setCustPin(obj.get(i).getCustPin());
-			objDto.setCustRev(obj.get(i).getCustRev());
+			objDto.setCustomerPin(obj.get(i).getCustomerPin());
+			objDto.setCustomerRevision(obj.get(i).getCustomerRevision());
 			objDto.setDate(obj.get(i).getDate());
 			objDto.setDateCreated(obj.get(i).getDateCreated());
 			objDto.setNewBasePrice(obj.get(i).getNewBasePrice());
@@ -200,6 +258,58 @@ public class DataTools {
 			objDto.setSteps(obj.get(i).getSteps());
 			objDto.setSubcontractor(obj.get(i).getSubcontractor());
 			objDto.setType(obj.get(i).getType());
+
+			aniloxRollListDto.add(objDto);
+		}
+
+		return aniloxRollListDto;
+	}
+
+	public static String forBlank(String obj) {
+
+		if (obj.isBlank()) {
+			obj = "NONE";
+
+		}
+
+		return obj;
+	}
+
+	public static List<PrintDrawingDto> convertObjNone(List<PrintDrawingDto> oldObjectDto) {
+		List<PrintDrawingDto> aniloxRollListDto = new ArrayList<>();
+
+		for (int i = 1; i < oldObjectDto.size(); i++) {
+			PrintDrawingDto objDto = new PrintDrawingDto();
+
+			objDto.setBearingMax(forBlank(oldObjectDto.get(i).getBearingMax()));
+			objDto.setXlsmPath(forBlank(oldObjectDto.get(i).getXlsmPath()));
+			objDto.setXlsxPath(forBlank(oldObjectDto.get(i).getXlsxPath()));
+			objDto.setPdfPath(forBlank(oldObjectDto.get(i).getPdfPath()));
+			objDto.setScannedPath(forBlank(oldObjectDto.get(i).getScannedPath()));
+			objDto.setDmgDrawingPath(forBlank(oldObjectDto.get(i).getDmgDrawingPath()));
+			objDto.setDrawingName(forBlank(oldObjectDto.get(i).getDrawingName()));
+			objDto.setDiameterLow(oldObjectDto.get(i).getDiameterLow());
+			objDto.setDiameterHigh(oldObjectDto.get(i).getDiameterHigh());
+			objDto.setFaceLengthLow(oldObjectDto.get(i).getFaceLengthLow());
+			objDto.setFaceLengthHigh(oldObjectDto.get(i).getFaceLengthHigh());
+			objDto.setCustomer(forBlank(oldObjectDto.get(i).getCustomer()));
+			objDto.setOem(forBlank(oldObjectDto.get(i).getOem()));
+			objDto.setBearingMin(forBlank(oldObjectDto.get(i).getBearingMin()));
+			objDto.setBearingMax(forBlank(oldObjectDto.get(i).getBearingMax()));
+
+			objDto.setCustomerPin(forBlank(oldObjectDto.get(i).getCustomerPin()));
+			objDto.setCustomerRevision(forBlank(oldObjectDto.get(i).getCustomerRevision()));
+			objDto.setDate(forBlank(oldObjectDto.get(i).getDate()));
+			objDto.setDateCreated(forBlank(oldObjectDto.get(i).getDateCreated()));
+			objDto.setNewBasePrice(forBlank(oldObjectDto.get(i).getNewBasePrice()));
+			objDto.setOriginatingCustomer(forBlank(oldObjectDto.get(i).getOriginatingCustomer()));
+			objDto.setPartNo(forBlank(oldObjectDto.get(i).getPartNo()));
+			objDto.setPrevPartNo(forBlank(oldObjectDto.get(i).getPrevPartNo()));
+			objDto.setProductCode(forBlank(oldObjectDto.get(i).getProductCode()));
+			objDto.setRevNumber(forBlank(oldObjectDto.get(i).getRevNumber()));
+			objDto.setSteps(forBlank(oldObjectDto.get(i).getSteps()));
+			objDto.setSubcontractor(forBlank(oldObjectDto.get(i).getSubcontractor()));
+			objDto.setType(forBlank(oldObjectDto.get(i).getType()));
 
 			aniloxRollListDto.add(objDto);
 		}
@@ -221,7 +331,7 @@ public class DataTools {
 		int i = 1;
 		try {
 
-			BufferedWriter writer = new BufferedWriter(new FileWriter("HARPER_ACCESS_1.sql"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("PrintDrawings.sql"));
 
 			while (i < masterSQLScript.size() - 1) {
 
@@ -252,33 +362,33 @@ public class DataTools {
 		for (int i = 1; i < obj.size(); i++) {
 			PrintDrawing drawing = obj.get(i);
 			// Clean up each field in the PrintDrawing object
-			drawing.setBearingMax(cleanUp(drawing.getBearingMax()));
-			drawing.setBearingMin(cleanUp(drawing.getBearingMin()));
-			drawing.setCust(cleanUp(drawing.getCust()));
-			drawing.setCustPin(cleanUp(drawing.getCustPin()));
-			drawing.setCustRev(cleanUp(drawing.getCustRev()));
-			drawing.setDate(cleanUp(drawing.getDate()));
-			drawing.setDateCreated(cleanUp(drawing.getDateCreated()));
-			drawing.setDia1(cleanUp(drawing.getDia1()));
-			drawing.setDia2(cleanUp(drawing.getDia2()));
-			drawing.setDmgDrawingPath("NONE");
-			drawing.setDrawingName(cleanUp(drawing.getDrawingName()));
-			drawing.setFace1(cleanUp(drawing.getFace1()));
-			drawing.setFace2(cleanUp(drawing.getFace2()));
-			drawing.setNewBasePrice(cleanUp(drawing.getNewBasePrice()));
-			drawing.setOem(cleanUp(drawing.getOem()));
-			drawing.setOriginatingCustomer(cleanUp(drawing.getOriginatingCustomer()));
-			drawing.setPartNo(cleanUp(drawing.getPartNo()));
-			drawing.setPdfPath(cleanUp(drawing.getPdfPath()));
-			drawing.setPrevPartNo(cleanUp(drawing.getPrevPartNo()));
-			drawing.setProductCode(cleanUp(drawing.getProductCode()));
-			drawing.setRevNumber(cleanUp(drawing.getRevNumber()));
-			drawing.setScannedPath("NONE");
-			drawing.setSteps(cleanUp(drawing.getSteps()));
-			drawing.setSubcontractor(cleanUp(drawing.getSubcontractor()));
-			drawing.setType(cleanUp(drawing.getType()));
-			drawing.setXlsmPath(cleanUp("NONE"));
-			drawing.setXlsxPath(cleanUp("NONE"));
+			drawing.setBearingMax(cleanUpQuotes(drawing.getBearingMax()));
+			drawing.setBearingMin(cleanUpQuotes(drawing.getBearingMin()));
+			drawing.setCustomer(cleanUpQuotes(drawing.getCustomer()));
+			drawing.setCustomerPin(cleanUpQuotes(drawing.getCustomerPin()));
+			drawing.setCustomerRevision(cleanUpQuotes(drawing.getCustomerRevision()));
+			drawing.setDate(cleanUpQuotes(drawing.getDate()));
+			drawing.setDateCreated(cleanUpQuotes(drawing.getDateCreated()));
+			drawing.setDiameterLow(removeCharacters(cleanUpQuotes(drawing.getDiameterLow())));
+			drawing.setDiameterHigh(removeCharacters(cleanUpQuotes(drawing.getDiameterHigh())));
+			drawing.setDmgDrawingPath(fillword);
+			drawing.setDrawingName(cleanUpQuotes(drawing.getDrawingName()));
+			drawing.setFaceLengthLow(removeCharacters(cleanUpQuotes(drawing.getFaceLengthLow())));
+			drawing.setFaceLengthHigh(removeCharacters(cleanUpQuotes(drawing.getFaceLengthHigh())));
+			drawing.setNewBasePrice(cleanUpQuotes(drawing.getNewBasePrice()));
+			drawing.setOem(cleanUpQuotes(drawing.getOem()));
+			drawing.setOriginatingCustomer(cleanUpQuotes(drawing.getOriginatingCustomer()));
+			drawing.setPartNo(cleanUpQuotes(drawing.getPartNo()));
+			drawing.setPdfPath(cleanUpQuotes(drawing.getPdfPath()));
+			drawing.setPrevPartNo(cleanUpQuotes(drawing.getPrevPartNo()));
+			drawing.setProductCode(cleanUpQuotes(drawing.getProductCode()));
+			drawing.setRevNumber(cleanUpQuotes(drawing.getRevNumber()));
+			drawing.setScannedPath(fillword);
+			drawing.setSteps(cleanUpQuotes(drawing.getSteps()));
+			drawing.setSubcontractor(cleanUpQuotes(drawing.getSubcontractor()));
+			drawing.setType(cleanUpQuotes(drawing.getType()));
+			drawing.setXlsmPath(cleanUpQuotes(fillword));
+			drawing.setXlsxPath(cleanUpQuotes(fillword));
 		}
 		return obj;
 	}
@@ -345,6 +455,19 @@ public class DataTools {
 
 	}
 
+	public static String splitStringListStr(String temp1) {
+		// System.out.println("splitStringList()...................");
+		// System.out.println("*** Press Enter ***");
+		// ;
+
+		String[] temp2 = temp1.split(",", -2);
+
+		String temp3 = temp2[0];
+
+		return temp3;
+
+	}
+
 	// Method to create new file
 	public static void createNewFile() {
 		try {
@@ -389,7 +512,8 @@ public class DataTools {
 			ClassLoader classLoader = DataTools.class.getClassLoader();
 
 			// Get the resource as an InputStream
-			InputStream inputStream = classLoader.getResourceAsStream("resources/PrintDrawings.csv");
+			InputStream inputStream = classLoader
+					.getResourceAsStream("resources/PrintDrawings.csv");
 
 			// Use the InputStream to read the CSV data (e.g., with Apache Commons CSV)
 
@@ -437,7 +561,8 @@ public class DataTools {
 	 * @param k        Index of the string array element to track
 	 * @param i        Index of the string to track
 	 */
-	public static void trackVariableValues(List<String> strList, List<String[]> strListB, int k, int i) {
+	public static void trackVariableValues(List<String> strList, List<String[]> strListB, int k,
+			int i) {
 		System.out.println("k = " + k);
 		System.out.println("strList.get(" + i + ")= " + strList.get(i));
 		System.out.println("strListB.get(" + i + ")[" + k + "] = " + strListB.get(i)[k]);
@@ -504,33 +629,57 @@ public class DataTools {
 				}
 
 				for (int k = 1; k < printDrawingList.size(); k++) {
-					writer.write(String.format("%-100S", printDrawingList.get(k).getBearingMax().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getBearingMin().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getCust().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getCustPin().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getCustRev().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getBearingMax().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getBearingMin().trim()));
+					writer.write(
+							String.format("%-100S", printDrawingList.get(k).getCustomer().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getCustomerPin().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getCustomerRevision().trim()));
 					writer.write(String.format("%-100S", printDrawingList.get(k).getDate().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getDateCreated().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getDia1().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getDia2().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getDmgDrawingPath().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getDrawingName().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getFace1().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getFace2().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getNewBasePrice().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getDateCreated().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getDiameterLow().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getDiameterHigh().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getDmgDrawingPath().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getDrawingName().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getFaceLengthLow().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getFaceLengthHigh().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getNewBasePrice().trim()));
 					writer.write(String.format("%-100S", printDrawingList.get(k).getOem().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getOriginatingCustomer().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getPartNo().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getPdfPath().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getPrevPartNo().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getProductCode().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getRevNumber().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getScannedPath().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getSteps().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getSubcontractor().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getOriginatingCustomer().trim()));
+					writer.write(
+							String.format("%-100S", printDrawingList.get(k).getPartNo().trim()));
+					writer.write(
+							String.format("%-100S", printDrawingList.get(k).getPdfPath().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getPrevPartNo().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getProductCode().trim()));
+					writer.write(
+							String.format("%-100S", printDrawingList.get(k).getRevNumber().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getScannedPath().trim()));
+					writer.write(
+							String.format("%-100S", printDrawingList.get(k).getSteps().trim()));
+					writer.write(String.format("%-100S",
+							printDrawingList.get(k).getSubcontractor().trim()));
 					writer.write(String.format("%-100S", printDrawingList.get(k).getType().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getXlsmPath().trim()));
-					writer.write(String.format("%-100S", printDrawingList.get(k).getXlsxPath().trim()));
+					writer.write(
+							String.format("%-100S", printDrawingList.get(k).getXlsmPath().trim()));
+					writer.write(
+							String.format("%-100S", printDrawingList.get(k).getXlsxPath().trim()));
 					writer.newLine();
 				}
 			}
@@ -574,7 +723,7 @@ public class DataTools {
 	 * @param obj The string to be cleaned up
 	 * @return The cleaned up string
 	 */
-	public static String cleanUp(String obj) {
+	public static String cleanUpQuotes(String obj) {
 		int count = 10;
 
 		while (count < 11) {
@@ -587,9 +736,6 @@ public class DataTools {
 			count++;
 		}
 
-		if (obj.equals("")) {
-			obj = "NONE";
-		}
 		return obj;
 	}
 
